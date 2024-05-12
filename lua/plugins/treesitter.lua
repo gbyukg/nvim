@@ -8,18 +8,20 @@
 -- "gosum",
 return {
   "nvim-treesitter/nvim-treesitter",
-  opts = {
-    ensure_installed = {
-      "swift",
+  opts = function(_, opts)
+    if type(opts.ensure_installed) == "table" then
+      vim.list_extend(opts.ensure_installed, {
+        "swift",
 
-      -- DevOps
-      "git_config",
-      "git_rebase",
-      "gitattributes",
-      "gitcommit",
-      "gitignore",
-      "ssh_config",
-      "ini",
-    },
-  },
+        -- DevOps
+        "git_config",
+        "git_rebase",
+        "gitattributes",
+        "gitcommit",
+        "gitignore",
+        "ssh_config",
+        "ini",
+      })
+    end
+  end
 }
